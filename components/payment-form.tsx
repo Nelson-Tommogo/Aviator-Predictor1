@@ -23,6 +23,11 @@ export function PaymentForm() {
     cvc: "",
   })
 
+  // Current exchange rate (you might want to fetch this dynamically)
+  const exchangeRate = 142.50 // 1 USD = ~142.50 KES as of example
+  const amountUSD = 100
+  const amountKES = Math.round(amountUSD * exchangeRate)
+
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
@@ -63,7 +68,7 @@ export function PaymentForm() {
         },
         body: JSON.stringify({
           phoneNumber: formattedPhone,
-          amount: 100,
+          amount: amountKES, // Sending the converted KES amount
         }),
       })
 
@@ -81,7 +86,7 @@ export function PaymentForm() {
 
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent(
-      "Hi, I've completed my payment for the Aviator Predictor. Here's my payment proof.",
+      `Hi, I've completed my payment for the Aviator Predictor. Here's my payment proof for ${amountKES} KES ($${amountUSD}).`,
     )
     window.open(`https://wa.me/13053897291?text=${message}`, "_blank")
   }
@@ -93,7 +98,7 @@ export function PaymentForm() {
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h2>
           <p className="text-gray-600 mb-6">
-            Your STK push has been sent successfully. Please complete the payment on your phone.
+            Your STK push for {amountKES} KES has been sent successfully. Please complete the payment on your phone.
           </p>
           <div className="space-y-3">
             <Button onClick={handleWhatsAppContact} className="w-full bg-green-600 hover:bg-green-700">
@@ -164,7 +169,12 @@ export function PaymentForm() {
               <Label htmlFor="amount" className="text-gray-700">
                 Amount (USD)
               </Label>
-              <Input id="amount" value="$100.00" disabled className="mt-1 bg-gray-50" />
+              <Input 
+                id="amount" 
+                value={`$${amountUSD}.00 (≈ ${amountKES} KES)`} 
+                disabled 
+                className="mt-1 bg-gray-50" 
+              />
             </div>
 
             <div>
@@ -238,7 +248,7 @@ export function PaymentForm() {
               Processing Payment...
             </div>
           ) : (
-            "Pay $100.00"
+            `Pay $${amountUSD}.00 (≈ ${amountKES} KES)`
           )}
         </Button>
 
