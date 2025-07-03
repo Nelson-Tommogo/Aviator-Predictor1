@@ -9,7 +9,7 @@ export function Header() {
             src="/img1.png"
             alt="Aviator Predictor Header"
             className="object-contain"
-            style={{ width: '720px', height: '300px', maxWidth: '1000px', margin: '-110px auto;' }}
+            style={{ width: '720px', height: '300px', maxWidth: '1000px', margin: '-112px auto;' }}
           />
         </div>
       </div>
