@@ -105,7 +105,7 @@ export function PaymentForm() {
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h2>
           <p className="text-gray-600 mb-6">
-            Your STK push for {amountUSD} USD has been sent successfully. Please complete the payment on your phone.
+            Your STK push for {amountUSD} USD has been sent successfully. Please complete the payment on your phone to get Aviator Predictor App Instantly
           </p>
           <div className="space-y-3">
             <Button onClick={handleWhatsAppContact} className="w-full bg-green-600 hover:bg-green-700">
@@ -178,7 +178,7 @@ export function PaymentForm() {
               </Label>
               <Input 
                 id="amount" 
-                value={`$${amountUSD}.00 (≈ ${amountKES} KES)`} 
+                value={`$${amountUSD}.00`} 
                 disabled 
                 className="mt-1 bg-gray-50" 
               />

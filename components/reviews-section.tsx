@@ -83,7 +83,7 @@ export function ReviewsSection() {
           </p>
           <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
             <div>
-              <div className="text-lg md:text-2xl font-bold text-blue-600">99.9%</div>
+              <div className="text-lg md:text-2xl font-bold text-blue-600">100%</div>
               <div className="text-xs md:text-sm text-gray-600">Accuracy Rate</div>
             </div>
             <div>
