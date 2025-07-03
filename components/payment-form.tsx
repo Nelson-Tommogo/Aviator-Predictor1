@@ -178,7 +178,7 @@ export function PaymentForm() {
               </Label>
               <Input 
                 id="amount" 
-                value={`$${amountUSD}.00 (≈ ${amountKES} KES)`} 
+                value={`$${amountUSD}.00`} 
                 disabled 
                 className="mt-1 bg-gray-50" 
               />
