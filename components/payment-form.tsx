@@ -254,7 +254,7 @@ export function PaymentForm() {
               Processing Payment...
             </div>
           ) : (
-            `Pay $${amountUSD}.00 (≈ ${amountKES} KES)`
+            `Pay $${amountUSD}.00`
           )}
         </Button>
         {formError && (
