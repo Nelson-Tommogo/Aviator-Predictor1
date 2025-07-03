@@ -22,11 +22,17 @@ export function PaymentForm() {
     expiryDate: "",
     cvc: "",
   })
+  const [formError, setFormError] = useState("")
 
   // Current exchange rate (you might want to fetch this dynamically)
   const exchangeRate = 142.50 // 1 USD = ~142.50 KES as of example
   const amountUSD = 100
   const amountKES = Math.round(amountUSD * exchangeRate)
+
+  const isFormValid =
+    formData.fullName.trim() !== "" &&
+    formData.email.trim() !== "" &&
+    formData.phoneNumber.trim() !== ""
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -51,10 +57,11 @@ export function PaymentForm() {
   }
 
   const handleMpesaPayment = async () => {
-    if (!formData.phoneNumber) {
-      alert("Please enter your M-Pesa phone number")
+    if (!formData.fullName || !formData.email || !formData.phoneNumber) {
+      setFormError("Please fill in your Full Name, Email, and M-Pesa Phone Number.")
       return
     }
+    setFormError("")
 
     const formattedPhone = formatPhoneNumber(formData.phoneNumber)
 
@@ -86,7 +93,7 @@ export function PaymentForm() {
 
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent(
-      `Hi, I've completed my payment for the Aviator Predictor. Here's my payment proof for ${amountKES} KES ($${amountUSD}).`,
+      `Hi, I've completed my payment for the Aviator Predictor. Here's my payment proof for ${amountUSD} USD (≈ ${amountKES} KES).`,
     )
     window.open(`https://wa.me/13053897291?text=${message}`, "_blank")
   }
@@ -98,7 +105,7 @@ export function PaymentForm() {
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h2>
           <p className="text-gray-600 mb-6">
-            Your STK push for {amountKES} KES has been sent successfully. Please complete the payment on your phone.
+            Your STK push for {amountUSD} USD has been sent successfully. Please complete the payment on your phone.
           </p>
           <div className="space-y-3">
             <Button onClick={handleWhatsAppContact} className="w-full bg-green-600 hover:bg-green-700">
@@ -239,7 +246,6 @@ export function PaymentForm() {
 
         <Button
           onClick={handleMpesaPayment}
-          disabled={paymentState === "processing"}
           className="w-full bg-blue-600 hover:bg-blue-700 h-12 text-lg font-semibold disabled:opacity-50"
         >
           {paymentState === "processing" ? (
@@ -251,6 +257,9 @@ export function PaymentForm() {
             `Pay $${amountUSD}.00 (≈ ${amountKES} KES)`
           )}
         </Button>
+        {formError && (
+          <div className="text-red-600 text-sm text-center mt-2">{formError}</div>
+        )}
 
         <div className="text-center text-xs text-gray-500">
           Powered by <span className="font-semibold">stripe</span>
