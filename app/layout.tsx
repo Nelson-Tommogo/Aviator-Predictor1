@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Aviator Predictor',
-  description: 'Aviator Dector',
+  description: 'Aviator Predictor',
   generator: 'common',
 }
 
