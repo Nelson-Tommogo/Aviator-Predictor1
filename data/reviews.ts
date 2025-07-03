@@ -739,7 +739,7 @@ for (let i = 81; i <= 200; i++) {
   const lastName = lastNames[Math.floor(Math.random() * lastNames.length)]
   const city = cities[Math.floor(Math.random() * cities.length)]
   const testimonial = testimonials[Math.floor(Math.random() * testimonials.length)]
-  const amount = Math.floor(Math.random() * 4000) + 1000 // Random amount between $1000-$5000
+  const amount = Math.floor(Math.random() * 4000) + 1000
 
   additionalReviews.push({
     id: i,

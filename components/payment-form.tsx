@@ -24,7 +24,7 @@ export function PaymentForm() {
   })
 
   // Current exchange rate (you might want to fetch this dynamically)
-  const exchangeRate = 142.50 // 1 USD = ~142.50 KES as of example
+  const exchangeRate = 130.00 // 1 USD = ~142.50 KES as of example
   const amountUSD = 100
   const amountKES = Math.round(amountUSD * exchangeRate)
 
@@ -86,7 +86,7 @@ export function PaymentForm() {
 
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent(
-      `Hi, I've completed my payment for the Aviator Predictor. Here's my payment proof for ${amountKES} KES ($${amountUSD}).`,
+      `Hi, I've completed my payment for the Aviator Predictor. Here's my payment proof for ($${amountUSD}).`,
     )
     window.open(`https://wa.me/13053897291?text=${message}`, "_blank")
   }
@@ -98,7 +98,7 @@ export function PaymentForm() {
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h2>
           <p className="text-gray-600 mb-6">
-            Your STK push for {amountKES} KES has been sent successfully. Please complete the payment on your phone.
+            Your STK push  has been sent successfully. Please complete the payment on your phone.
           </p>
           <div className="space-y-3">
             <Button onClick={handleWhatsAppContact} className="w-full bg-green-600 hover:bg-green-700">
